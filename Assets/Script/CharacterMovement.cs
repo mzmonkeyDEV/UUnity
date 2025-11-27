@@ -20,17 +20,18 @@ public class CharacterMovement : MonoBehaviour
 
         if (movement == Vector3.zero)
         {
-            animator.SetFloat("Speed", 0); // idle
+            animator.SetFloat("Speed", 0); //idle
         }
         else
         {
-            animator.SetFloat("Speed", 1); // Run
+            animator.SetFloat("Speed", 1); //Run
         }
 
         if (movement.magnitude > 0.1f)
         {
             float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+            //Rotation 
         }
 
     }
