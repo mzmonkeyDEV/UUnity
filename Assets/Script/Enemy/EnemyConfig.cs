@@ -22,4 +22,8 @@ public class EnemyConfig : ScriptableObject
     public float retreatChance = 0.3f;
     public float retreatDistance = 8f;
     public float retreatCooldown = 5f;
+    [Tooltip("Distance at which enemy will always retreat (personal space)")]
+    public float tooCloseDistance = 3f;
+    [Tooltip("Can interrupt attack state when player gets too close")]
+    public bool canRetreatFromAttack = true;
 }

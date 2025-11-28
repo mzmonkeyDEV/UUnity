@@ -65,7 +65,7 @@ public class EnemyAI : MonoBehaviour
         PatrolState = new PatrolState(this, _movement, config);
         ChaseState = new ChaseState(this, _movement);
         AttackState = new AttackState(this, _movement, _combat, _detection);
-        RetreatState = new RetreatState(this, _movement, config);
+        RetreatState = new RetreatState(this, _movement, config, transform);
     }
 
     private void Update()
@@ -82,7 +82,7 @@ public class EnemyAI : MonoBehaviour
         bool playerInAttack = _detection.IsPlayerInAttackRange(player);
 
         // Check for retreat condition first
-        if (playerInAttack && ShouldRetreat())
+        if (playerInSight && ShouldRetreat())
         {
             ChangeState(RetreatState);
             _lastRetreatTime = Time.time;
@@ -145,5 +145,8 @@ public class EnemyAI : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, config.retreatDistance);
+
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, config.tooCloseDistance);
     }
 }
