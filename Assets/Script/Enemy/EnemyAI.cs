@@ -1,7 +1,7 @@
 using UnityEngine.AI;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : Character
 {
     [Header("References")]
     [SerializeField] private EnemyConfig config;
@@ -119,19 +119,19 @@ public class EnemyAI : MonoBehaviour
         _currentState.Enter();
     }
 
-    public void TakeDamage(float damage)
-    {
-        _health -= damage;
-        if (_health <= 0)
-        {
-            Die();
-        }
-    }
+    //public void TakeDamage(float damage)
+    //{
+    //    _health -= damage;
+    //    if (_health <= 0)
+    //    {
+    //        Die();
+    //    }
+    //}
 
-    private void Die()
-    {
-        Destroy(gameObject, 0.5f);
-    }
+    //private void Die()
+    //{
+    //    Destroy(gameObject, 0.5f);
+    //}
 
     private void OnDrawGizmosSelected()
     {
