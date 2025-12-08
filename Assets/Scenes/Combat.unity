@@ -624,7 +624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 10
   currentHp: 0
-  atk: 1
+  atk: 5
   def: 0
   isDead: 0
   moveSpeed: 5

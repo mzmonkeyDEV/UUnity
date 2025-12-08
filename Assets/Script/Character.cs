@@ -36,6 +36,7 @@ public class Character : MonoBehaviour
     {
         isDead = true;
         Debug.Log($"{gameObject.name} is Dead");
+        Destroy(gameObject);
     }
 
 }
