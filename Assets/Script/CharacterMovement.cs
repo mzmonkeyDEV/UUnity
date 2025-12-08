@@ -7,8 +7,7 @@ public class CharacterMovement : Character
     [Header("Player")]
     public float moveSpeed = 5f;         
     public Rigidbody rb;                
-    public Animator animator;           
-    public Camera cam;                  
+    public Animator animator;                 
 
     Vector3 movement;
 
@@ -16,6 +15,7 @@ public class CharacterMovement : Character
     public float attackCooldown = 0.5f;
     private bool isAttacking = false;
     private float nextAttackTime = 0f;
+    public AttackArea attackArea;
 
 
     void Update()
@@ -69,8 +69,13 @@ public class CharacterMovement : Character
 
         animator.SetFloat("Atk", 1);
 
+        attackArea.EnableHitbox(); 
+
         yield return new WaitForSeconds(0.4f);
 
         isAttacking = false;
+        animator.SetFloat("Atk", 0);
+
+        attackArea.DisableHitbox();
     }
 }
