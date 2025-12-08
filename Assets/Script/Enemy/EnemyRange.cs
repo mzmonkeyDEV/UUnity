@@ -8,7 +8,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
     public Transform player;
 
-    public LayerMask whatIsGround, whatIsPlayer;
+    public LayerMask whatIsGround, whatIsPlayer, whatIsWall;
 
     public float health;
 
@@ -76,6 +76,11 @@ public class EnemyAiTutorial : MonoBehaviour
     private void AttackPlayer()
     {
         //Make sure enemy doesn't move
+        if (Physics.Raycast(transform.position, player.position - transform.position, attackRange, whatIsWall))
+        {
+            Debug.Log("Not in line of sight");
+            ChasePlayer(); return;
+        }
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);

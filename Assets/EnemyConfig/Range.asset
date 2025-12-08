@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95d7f43b3934604c89ba387046c4d7f, type: 3}
+  m_Name: Range
+  m_EditorClassIdentifier: 
+  walkPointRange: 10
+  sightRange: 50
+  attackRange: 5
+  timeBetweenAttacks: 2
+  projectile: {fileID: 2542916044002616240, guid: 8e87295348ea98748a2a29938e1585a7,
+    type: 3}
+  projectileForce: 32
+  projectileUpForce: 8
+  maxHealth: 100
+  retreatChance: 0
+  retreatDistance: 8
+  retreatCooldown: 0.33
+  tooCloseDistance: 5
+  canRetreatFromAttack: 1
