@@ -5,18 +5,37 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     [Header("Stats")]
-    public float hp;
-    public float atk;
-    public float def;
+    public int maxHp = 100;
+    public int currentHp;
 
-    public void TakeDamage()
+    public int atk;
+    public int def;
+
+    public bool isDead = false;
+
+    protected virtual void Start()
     {
+        currentHp = maxHp;
+    }
+    public void TakeDamage(int damage)
+    {
+        if (isDead) return;
 
+        int finalDamage = Mathf.Clamp(damage - def, 1, damage);
+        currentHp -= finalDamage;
+
+        Debug.Log($"{gameObject.name} took {finalDamage} damage");
+
+        if (currentHp <= 0)
+        {
+            Die();
+        }
     }
 
-    public bool IsDead()
+    protected void Die()
     {
-        return hp <= 0;
+        isDead = true;
+        Debug.Log($"{gameObject.name} is Dead");
     }
 
 }

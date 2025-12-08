@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class CharacterMovement : Character
 {
+    [Header("Player")]
     public float moveSpeed = 5f;         
     public Rigidbody rb;                
     public Animator animator;           
@@ -11,8 +12,20 @@ public class CharacterMovement : MonoBehaviour
 
     Vector3 movement;
 
+    [Header("Attack")]
+    public float attackCooldown = 0.5f;
+    private bool isAttacking = false;
+    private float nextAttackTime = 0f;
+
+
     void Update()
     {
+        if (isAttacking)
+        {
+            animator.SetFloat("Speed", 0);
+            return;
+        }
+
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
@@ -34,11 +47,30 @@ public class CharacterMovement : MonoBehaviour
             //Rotation 
         }
 
+        if (Input.GetButtonDown("Fire1") && Time.time >= nextAttackTime)
+        {
+            StartCoroutine(DoAttack());
+        }
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (!isAttacking)
+        {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+            animator.SetFloat("Atk", 0);
+        }
 
+    }
+    IEnumerator DoAttack()
+    {
+        isAttacking = true;
+        nextAttackTime = Time.time + attackCooldown;
+
+        animator.SetFloat("Atk", 1);
+
+        yield return new WaitForSeconds(0.4f);
+
+        isAttacking = false;
     }
 }

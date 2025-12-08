@@ -714,7 +714,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!95 &502085779 stripped
 Animator:
@@ -734,10 +734,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79fb798430179ac49867fb37714b5e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 0
+  currentHp: 0
+  atk: 0
+  def: 0
+  isDead: 0
   moveSpeed: 5
   rb: {fileID: 502085778}
   animator: {fileID: 502085779}
   cam: {fileID: 0}
+  attackCooldown: 0.5
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,6 +1322,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1441,6 +1448,21 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984eac930d0ab0e4faabeeef03a7f6db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 502085776}
+  followSpeed: 8
+  offset: {x: 0, y: 10, z: -7.5}
 --- !u!1 &1021208231
 GameObject:
   m_ObjectHideFlags: 0
