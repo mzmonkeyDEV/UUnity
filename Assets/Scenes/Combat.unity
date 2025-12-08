@@ -630,8 +630,8 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 502085778}
   animator: {fileID: 502085779}
-  cam: {fileID: 0}
   attackCooldown: 0.5
+  attackArea: {fileID: 1893804093}
 --- !u!1 &626948081
 GameObject:
   m_ObjectHideFlags: 0
@@ -2346,6 +2346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerStats: {fileID: 502085780}
+  damageMultiplier: 1
 --- !u!1 &1962211724
 GameObject:
   m_ObjectHideFlags: 0
