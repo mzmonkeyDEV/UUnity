@@ -7,11 +7,13 @@ public class EnemyAI : Character
     [SerializeField] private EnemyConfig config;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform player;
+    [SerializeField] private Rigidbody rb;
 
     [Header("Layer Masks")]
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private LayerMask whatIsPlayer;
     [SerializeField] private LayerMask whatIsWall;
+    [SerializeField] private Animator animator;
 
     // Services
     private EnemyDetectionService _detection;
@@ -40,6 +42,8 @@ public class EnemyAI : Character
         _lastRetreatTime = -config.retreatCooldown;
         _currentState = PatrolState;
         _currentState.Enter();
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void InitializeReferences()
@@ -71,9 +75,10 @@ public class EnemyAI : Character
     private void Update()
     {
         if (player == null) return;
-
+        
         _currentState.Execute();
         EvaluateStateTransitions();
+        animator.SetFloat("Speed",agent.velocity.magnitude);
     }
 
     private void EvaluateStateTransitions()
