@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class HPBar : MonoBehaviour
 {
     [Header("Target Character")]
-    public Character target;       // ตัวละครที่มี HP
+    public Character target;       
 
     [Header("HP Image (BG)")]
-    public RectTransform hpRect;   // รูปเลือด (BG) ที่ต้องลด/เพิ่มความกว้าง
+    public RectTransform hpRect;  
 
-    private float maxWidth;        // ความกว้างสูงสุดตอนเลือดเต็ม
+    private float maxWidth; 
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class HPBar : MonoBehaviour
             return;
         }
 
-        // เก็บความกว้างตอนเลือดเต็ม
+        //เก็บความกว้างตอนเลือดเต็ม
         maxWidth = hpRect.sizeDelta.x;
     }
 
@@ -35,7 +35,7 @@ public class HPBar : MonoBehaviour
     {
         float hpPercent = (float)target.currentHp / target.maxHp;
 
-        // ปรับความกว้างตามเปอร์เซ็นต์เลือด
+        //ปรับความกว้างตามเปอร์เซ็นต์เลือด
         hpRect.sizeDelta = new Vector2(maxWidth * hpPercent, hpRect.sizeDelta.y);
     }
 }
