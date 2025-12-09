@@ -1938,7 +1938,7 @@ MonoBehaviour:
     m_Bits: 64
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 8
   whatIsWall:
     serializedVersion: 2
     m_Bits: 128
