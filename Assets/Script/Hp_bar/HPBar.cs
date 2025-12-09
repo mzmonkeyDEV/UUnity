@@ -5,6 +5,37 @@ using UnityEngine.UI;
 
 public class HPBar : MonoBehaviour
 {
+    [Header("Target Character")]
+    public Character target;       
 
+    [Header("HP Image (BG)")]
+    public RectTransform hpRect;  
 
+    private float maxWidth; 
+
+    void Start()
+    {
+        if (target == null || hpRect == null)
+        {
+            Debug.LogError("UIHpBar_Width: Missing references!");
+            enabled = false;
+            return;
+        }
+
+        //เก็บความกว้างตอนเลือดเต็ม
+        maxWidth = hpRect.sizeDelta.x;
+    }
+
+    void Update()
+    {
+        UpdateHpBar();
+    }
+
+    void UpdateHpBar()
+    {
+        float hpPercent = (float)target.currentHp / target.maxHp;
+
+        //ปรับความกว้างตามเปอร์เซ็นต์เลือด
+        hpRect.sizeDelta = new Vector2(maxWidth * hpPercent, hpRect.sizeDelta.y);
+    }
 }
