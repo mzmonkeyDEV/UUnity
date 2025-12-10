@@ -1,9 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class EnemyCombatService
 {
+    private readonly Character character;
     private readonly Transform _transform;
     private readonly EnemyConfig _config;
     private readonly EnemyAI _ai;
@@ -45,7 +46,7 @@ public class EnemyCombatService
 
 
     // --------------------------------------------------------------------------
-    // MINION � MELEE (ANIMATION EVENT controls the hit)
+    // MINION — MELEE (ANIMATION EVENT controls the hit)
     // --------------------------------------------------------------------------
     public void MeleeAttack()
     {
@@ -64,13 +65,14 @@ public class EnemyCombatService
 
         if (Vector3.Distance(_transform.position, _ai.Player.position) <= _config.meleeRange)
         {
-            // APPLY DAMAGE HERE
+            // APPLY DAMAGE HERE ไอทามมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมม
+            //character.TakeDamage(5);
         }
     }
 
 
     // --------------------------------------------------------------------------
-    // BOSS � SKILL 1 : BIG BONE
+    // BOSS — SKILL 1 : BIG BONE
     // --------------------------------------------------------------------------
     public void SkillBigBone_Start()
     {
@@ -84,7 +86,7 @@ public class EnemyCombatService
     public void Event_SkillBigBone_Release()
     {
         Quaternion rot = FlatRotation();
-        GameObject obj = Object.Instantiate(_config.bigBoneProjectile, _transform.position,rot);
+        GameObject obj = Object.Instantiate(_config.bigBoneProjectile, _transform.position + Vector3.up * 1, rot);
         obj.GetComponent<Rigidbody>().AddForce(_transform.forward * _config.bigBoneForce, ForceMode.Impulse);
 
         _ai.RegisterSkillUsed();
@@ -92,7 +94,7 @@ public class EnemyCombatService
 
 
     // --------------------------------------------------------------------------
-    // BOSS � SKILL 2 : RAPID FIRE
+    // BOSS — SKILL 2 : RAPID FIRE
     // --------------------------------------------------------------------------
     public void SkillRapidFire_Start()
     {
@@ -126,13 +128,13 @@ public class EnemyCombatService
     public void Event_SkillRapidFire_Shoot()
     {
         Quaternion rot = FlatRotation();
-        GameObject obj = Object.Instantiate(_config.rapidFireProjectile, _transform.position, rot);
+        GameObject obj = Object.Instantiate(_config.rapidFireProjectile, _transform.position + Vector3.up * 1, rot);
         obj.GetComponent<Rigidbody>().AddForce(_transform.forward * _config.rapidFireForce, ForceMode.Impulse);
     }
 
 
     // --------------------------------------------------------------------------
-    // BOSS � SKILL 3 : AOE
+    // BOSS — SKILL 3 : AOE
     // --------------------------------------------------------------------------
     public void SkillAOE_Start()
     {
@@ -150,7 +152,7 @@ public class EnemyCombatService
 
 
     // --------------------------------------------------------------------------
-    // BOSS � SKILL 4 : SUMMON
+    // BOSS — SKILL 4 : SUMMON
     // --------------------------------------------------------------------------
     public void SkillSummon_Start()
     {
