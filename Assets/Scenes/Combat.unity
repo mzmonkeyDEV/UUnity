@@ -915,9 +915,16 @@ MonoBehaviour:
   skillEffects:
   - {fileID: 7314526620251459061, guid: ccf28ea29cf499744ac31bab90073aba, type: 3}
   - {fileID: 339158821923109191, guid: 108ca465382c11742bd2c91fe4fdb13f, type: 3}
+  - {fileID: 2787556212050310887, guid: 57970c6bb711ec24b8d98424b1806f3b, type: 3}
+  - {fileID: 7834434380170384362, guid: 68101499d07aced4aa0ded4acb624942, type: 3}
   effectOffsets:
   - {x: 0, y: 1, z: 0}
   - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  thunderProjectilePrefab: {fileID: 3647402321914128111, guid: 976956053013dd443be9ded41889d0e2,
+    type: 3}
+  doubleShiftThreshold: 0.3
 --- !u!1 &580133631
 GameObject:
   m_ObjectHideFlags: 0
