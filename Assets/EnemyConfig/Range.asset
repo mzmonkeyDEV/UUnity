@@ -38,7 +38,7 @@ MonoBehaviour:
   bigBoneForce: 25
   rapidFireForce: 18
   rapidFireRate: 0.1
-  rapidFireCount: 8
+  rapidFireCount: 12
   aoeDelay: 1
   summonCount: 2
   skillCooldown: 8

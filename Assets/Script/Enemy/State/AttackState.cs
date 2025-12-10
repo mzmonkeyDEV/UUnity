@@ -37,7 +37,7 @@ public class AttackState : IEnemyState
         if (_config.enemyType == EnemyConfig.EnemyType.Minion)
         {
             // MINION USES ONLY MELEE
-            _combat.MeleeAttack(_ai.Player);
+           _combat.MeleeAttack();
             return;
         }
 
@@ -48,11 +48,12 @@ public class AttackState : IEnemyState
 
             switch (randomSkill)
             {
-                case 0: _combat.SkillBigBone(); break;
-                case 1: _ai.StartCoroutine(_combat.SkillRapidFire()); break;
-                case 2: _ai.StartCoroutine(_combat.SkillAOE()); break;
-                case 3: _combat.SkillSummon(); break;
+                case 0: _combat.SkillBigBone_Start(); break;
+                case 1: _combat.SkillRapidFire_Start(); break;
+                case 2: _combat.SkillAOE_Start(); break;
+                case 3: _combat.SkillSummon_Start(); break;
             }
+
         }
     }
 

@@ -162,7 +162,8 @@ public class EnemyAI : Character
 
         if (ShouldWarpAfterSkill())
         {
-            WarpToNextBossPoint();
+            animator.SetTrigger("Warp");
+            
             SkillUseCount = 0; // reset counter
         }
     }
@@ -189,4 +190,30 @@ public class EnemyAI : Character
 
         Debug.Log("Boss warped to point " + _bossWarpIndex);
     }
+    public void AnimEvent_BigBone()
+    {
+        _combat.Event_SkillBigBone_Release();
+    }
+
+    public void AnimEvent_RapidFire()
+    {
+        StartCoroutine(_combat.RapidFireCoroutine());
+    }
+
+    public void AnimEvent_AOE()
+    {
+        _combat.Event_SkillAOE_Release();
+    }
+
+    public void AnimEvent_Summon()
+    {
+        _combat.Event_SkillSummon_Spawn();
+    }
+
+    public void AnimEvent_Melee()
+    {
+        if (config.enemyType == EnemyConfig.EnemyType.Minion)
+            _combat.MeleeDealDamage();
+    }
+
 }
