@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class EnemyAI : Character
 {
+    public int SkillUseCount { get; private set; }
+
     [Header("References")]
     [SerializeField] private EnemyConfig config;
     [SerializeField] private NavMeshAgent agent;
@@ -61,7 +63,7 @@ public class EnemyAI : Character
     {
         _detection = new EnemyDetectionService(transform, config, whatIsPlayer, whatIsWall);
         _movement = new EnemyMovementService(agent, transform, whatIsGround);
-        _combat = new EnemyCombatService(transform, config);
+        _combat = new EnemyCombatService(transform, config,this);
     }
 
     private void InitializeStates()
@@ -99,7 +101,7 @@ public class EnemyAI : Character
         {
             ChangeState(PatrolState);
         }
-        else if (playerInSight && !playerInAttack && _currentState != ChaseState && _currentState != RetreatState)
+        else if (playerInSight && !playerInAttack && _currentState != ChaseState && _currentState != RetreatState && !config.enableBossWarp)
         {
             ChangeState(ChaseState);
         }
@@ -153,5 +155,38 @@ public class EnemyAI : Character
 
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, config.tooCloseDistance);
+    }
+    public void RegisterSkillUsed()
+    {
+        SkillUseCount++;
+
+        if (ShouldWarpAfterSkill())
+        {
+            WarpToNextBossPoint();
+            SkillUseCount = 0; // reset counter
+        }
+    }
+
+    private bool ShouldWarpAfterSkill()
+    {
+        if (!config.enableBossWarp) return false;
+        if (config.bossWalkPoints == null || config.bossWalkPoints.Length == 0) return false;
+
+        if (SkillUseCount >= 3) return true;             // guaranteed
+        return Random.value < 0.2f;                     
+    }
+
+    private int _bossWarpIndex = 0;
+
+    private void WarpToNextBossPoint()
+    {
+        _bossWarpIndex = (_bossWarpIndex + 1) % config.bossWalkPoints.Length;
+
+        Transform point = config.bossWalkPoints[_bossWarpIndex];
+
+        agent.Warp(point.position);       // instant teleport
+        transform.rotation = point.rotation;
+
+        Debug.Log("Boss warped to point " + _bossWarpIndex);
     }
 }

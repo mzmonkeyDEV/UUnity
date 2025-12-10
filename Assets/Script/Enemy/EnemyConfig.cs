@@ -33,10 +33,7 @@ public class EnemyConfig : ScriptableObject
     public EnemyType enemyType = EnemyType.Minion;
 
     [Header("Boss Behaviour")]
-    public bool enableBossWalkRoute = false;
-    public Transform[] bossWalkPoints;
-    public float bossWalkPointTolerance = 1f;
-
+ 
     [Header("Skills")]
     public GameObject bigBoneProjectile;
     public GameObject rapidFireProjectile;
@@ -57,5 +54,8 @@ public class EnemyConfig : ScriptableObject
     public float meleeRange = 2f;
     public float meleeCooldown = 1f;
 
-
+    [Header("Boss Warp Skill")]
+    public bool enableBossWarp = false;
+    public Transform[] bossWalkPoints;
+    public float bossWalkPointTolerance = 1.0f;
 }

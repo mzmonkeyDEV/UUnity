@@ -1,19 +1,23 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class EnemyCombatService
 {
+
     private readonly Transform _transform;
     private readonly EnemyConfig _config;
-
+    private readonly EnemyAI _ai;
+   
     private float _lastSkillTime;
     private float _lastMeleeTime;
 
-    public EnemyCombatService(Transform transform, EnemyConfig config)
+    public EnemyCombatService(Transform transform, EnemyConfig config, EnemyAI ai)
     {
         _transform = transform;
         _config = config;
         _lastSkillTime = -_config.skillCooldown;
+        _ai = ai;
     }
 
     public bool CanUseSkill() =>
@@ -43,6 +47,9 @@ public class EnemyCombatService
         obj.GetComponent<Rigidbody>().AddForce(_transform.forward * _config.bigBoneForce, ForceMode.Impulse);
 
         _lastSkillTime = Time.time;
+
+        if (_config.enableBossWarp)
+            _ai.RegisterSkillUsed();
     }
 
     // ------------------------------- BOSS SKILL 2: Rapid Fire -------------------
@@ -58,6 +65,9 @@ public class EnemyCombatService
         }
 
         _lastSkillTime = Time.time;
+        if (_config.enableBossWarp)
+            _ai.RegisterSkillUsed();
+
     }
 
     // ------------------------------- BOSS SKILL 3: AOE --------------------------
@@ -69,6 +79,8 @@ public class EnemyCombatService
         Object.Instantiate(_config.aoeBonePrefab, _transform.position, Quaternion.identity);
 
         _lastSkillTime = Time.time;
+        if (_config.enableBossWarp)
+            _ai.RegisterSkillUsed();
     }
 
     // ------------------------------- BOSS SKILL 4: Summon -----------------------
@@ -84,5 +96,7 @@ public class EnemyCombatService
         }
 
         _lastSkillTime = Time.time;
+        if (_config.enableBossWarp)
+            _ai.RegisterSkillUsed();
     }
 }
