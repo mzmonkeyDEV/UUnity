@@ -64,8 +64,9 @@ public class RetreatState : IEnemyState
         float distanceToPlayer = Vector3.Distance(_transform.position, _ai.Player.position);
 
         // Exit retreat if far enough or time expired
-        if (distanceToPlayer >= _config.retreatDistance || Time.time >= _retreatStartTime + RETREAT_DURATION)
-        {
+        //if (distanceToPlayer >= _config.retreatDistance || Time.time >= _retreatStartTime + RETREAT_DURATION)
+            if (Time.time >= _retreatStartTime + RETREAT_DURATION)
+            {
             _ai.ChangeState(_ai.ChaseState);
         }
     }

@@ -22,7 +22,7 @@ MonoBehaviour:
   projectileUpForce: 8
   maxHealth: 100
   retreatChance: 1
-  retreatDistance: 6.76
-  retreatCooldown: 5.05
+  retreatDistance: 2.5
+  retreatCooldown: 9.99
   tooCloseDistance: 5
   canRetreatFromAttack: 1
