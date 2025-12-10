@@ -26,5 +26,12 @@ public class BoneDamage : MonoBehaviour
             return;
         }
 
+        if (other.CompareTag("Enemy"))
+        {
+            return;
+        }
+
+        Destroy(gameObject);
+
     }
 }
