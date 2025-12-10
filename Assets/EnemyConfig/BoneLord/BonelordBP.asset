@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1dc29551d778b34e884ee24a07130be, type: 3}
+  m_Name: BonelordBP
+  m_EditorClassIdentifier: 
+  enemyType: 2
+  usePatrol: 1
+  useChase: 0
+  useRetreat: 0
+  useMeleeAttack: 0
+  useRangedAttack: 0
+  useSkillSystem: 1
+  usePositionPoints: 1
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  engageDistance: 2
+  shouldFacePlayer: 1
+  isBoss: 1
+  availableSkills: []
