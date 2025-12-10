@@ -657,6 +657,34 @@ CapsuleCollider:
   m_Height: 2.2755055
   m_Direction: 1
   m_Center: {x: 0.04724631, y: 1.0513347, z: 0}
+--- !u!114 &256798892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256798886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b86aa89f094b1749a91c02d84f75823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillEffects:
+  - {fileID: 7314526620251459061, guid: ccf28ea29cf499744ac31bab90073aba, type: 3}
+  - {fileID: 339158821923109191, guid: 108ca465382c11742bd2c91fe4fdb13f, type: 3}
+  - {fileID: 2787556212050310887, guid: 57970c6bb711ec24b8d98424b1806f3b, type: 3}
+  - {fileID: 7834434380170384362, guid: 68101499d07aced4aa0ded4acb624942, type: 3}
+  - {fileID: 0}
+  effectOffsets:
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  thunderProjectilePrefab: {fileID: 3647402321914128111, guid: 976956053013dd443be9ded41889d0e2,
+    type: 3}
+  thunderStrikeEffectPrefab: {fileID: 5258695374749734573, guid: d46475ebcdee5a5469624067e22b02d4,
+    type: 3}
 --- !u!1 &273017254
 GameObject:
   m_ObjectHideFlags: 0
@@ -3770,6 +3798,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 256798888}
+    - targetCorrespondingSourceObject: {fileID: 1835885862194036, guid: c647a6e9ba715004ebbf4dc6d7bd1e7a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 256798892}
   m_SourcePrefab: {fileID: 100100000, guid: c647a6e9ba715004ebbf4dc6d7bd1e7a, type: 3}
 --- !u!1 &1881597649
 GameObject:
