@@ -1,6 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-<<<<<<< Updated upstream
 --- !u!1102 &-7092457531583893315
 AnimatorState:
   serializedVersion: 6
@@ -53,8 +52,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
-=======
->>>>>>> Stashed changes
 --- !u!1102 &-6686503799911914810
 AnimatorState:
   serializedVersion: 6
@@ -81,7 +78,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
-<<<<<<< Updated upstream
 --- !u!1102 &-3807577054172987474
 AnimatorState:
   serializedVersion: 6
@@ -134,8 +130,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
-=======
->>>>>>> Stashed changes
 --- !u!1107 &-888674313310974673
 AnimatorStateMachine:
   serializedVersion: 6
@@ -151,7 +145,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -6686503799911914810}
     m_Position: {x: 285, y: 105, z: 0}
-<<<<<<< Updated upstream
   - serializedVersion: 1
     m_State: {fileID: -3807577054172987474}
     m_Position: {x: 320, y: 170, z: 0}
@@ -167,8 +160,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -2029941404994587250}
     m_Position: {x: 460, y: 430, z: 0}
-=======
->>>>>>> Stashed changes
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -227,7 +218,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
-<<<<<<< Updated upstream
 --- !u!1102 &4298108811107981179
 AnimatorState:
   serializedVersion: 6
@@ -254,5 +244,3 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
-=======
->>>>>>> Stashed changes
