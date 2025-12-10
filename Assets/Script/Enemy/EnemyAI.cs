@@ -1,14 +1,8 @@
 using UnityEngine.AI;
 using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
 
 public class EnemyAI : Character
 {
-    [Header("Behavior")]
-    [SerializeField] private EnemyBehaviorProfile behaviorProfile;
-    private Dictionary<string, ISkillExecutor> _skillExecutors;
-
     [Header("References")]
     [SerializeField] private EnemyConfig config;
     [SerializeField] private NavMeshAgent agent;
@@ -32,9 +26,6 @@ public class EnemyAI : Character
     public ChaseState ChaseState { get; private set; }
     public AttackState AttackState { get; private set; }
     public RetreatState RetreatState { get; private set; }
-    public SkillState SkillState { get; private set; }
-    public MeleeAttackState MeleeAttackState { get; private set; }
-    public PositionPatrolState PositionPatrolState { get; private set; }
 
     // Properties
     public Transform Player => player;
@@ -75,57 +66,10 @@ public class EnemyAI : Character
 
     private void InitializeStates()
     {
-        // Initialize based on behavior profile
-        if (behaviorProfile.usePositionPoints)
-        {
-            PositionPatrolState = new PositionPatrolState(this, _movement, behaviorProfile);
-        }
-        else if (behaviorProfile.usePatrol)
-        {
-            PatrolState = new PatrolState(this, _movement, config);
-        }
-
-        if (behaviorProfile.useChase)
-        {
-            ChaseState = new ChaseState(this, _movement);
-        }
-
-        if (behaviorProfile.useRetreat)
-        {
-            RetreatState = new RetreatState(this, _movement, config, transform);
-        }
-
-        if (behaviorProfile.useMeleeAttack)
-        {
-            MeleeAttackState = new MeleeAttackState(this, _movement, behaviorProfile);
-        }
-
-        if (behaviorProfile.useRangedAttack)
-        {
-            AttackState = new AttackState(this, _movement, _combat, _detection);
-        }
-
-        if (behaviorProfile.useSkillSystem)
-        {
-            SkillState = new SkillState(this, _movement, behaviorProfile);
-            InitializeSkillExecutors();
-        }
-
-        // Set initial state based on profile
-        if (behaviorProfile.usePositionPoints)
-        {
-            _currentState = PositionPatrolState;
-        }
-        else if (behaviorProfile.usePatrol)
-        {
-            _currentState = PatrolState;
-        }
-        else
-        {
-            _currentState = ChaseState;
-        }
-
-        _currentState?.Enter();
+        PatrolState = new PatrolState(this, _movement, config);
+        ChaseState = new ChaseState(this, _movement);
+        AttackState = new AttackState(this, _movement, _combat, _detection);
+        RetreatState = new RetreatState(this, _movement, config, transform);
     }
 
     private void Update()
@@ -140,63 +84,28 @@ public class EnemyAI : Character
     private void EvaluateStateTransitions()
     {
         bool playerInSight = _detection.IsPlayerInSightRange(player);
-        bool playerInRange = Vector3.Distance(transform.position, player.position) <= behaviorProfile.engageDistance;
+        bool playerInAttack = _detection.IsPlayerInAttackRange(player);
 
-        // Boss with skill system
-        if (behaviorProfile.useSkillSystem)
+        // Check for retreat condition first
+        if (playerInSight && ShouldRetreat())
         {
-            if (playerInSight && SkillState.IsComplete())
-            {
-                // Randomly decide to use skill or move
-                if (Random.value < 0.7f && behaviorProfile.availableSkills.Any(s => s.CanUse()))
-                {
-                    ChangeState(SkillState);
-                }
-                else if (behaviorProfile.usePositionPoints)
-                {
-                    ChangeState(PositionPatrolState);
-                }
-                else
-                {
-                    ChangeState(ChaseState);
-                }
-            }
+            ChangeState(RetreatState);
+            _lastRetreatTime = Time.time;
+            return;
         }
-        // Melee enemy
-        else if (behaviorProfile.useMeleeAttack)
-        {
-            if (playerInRange && _currentState != MeleeAttackState)
-            {
-                ChangeState(MeleeAttackState);
-            }
-            else if (!playerInRange && _currentState != ChaseState)
-            {
-                ChangeState(ChaseState);
-            }
-        }
-        // Ranged enemy (use original logic)
-        else
-        {
-            // Keep your original transition logic here
-            if (behaviorProfile.useRetreat && playerInSight && ShouldRetreat())
-            {
-                ChangeState(RetreatState);
-                _lastRetreatTime = Time.time;
-                return;
-            }
 
-            if (!playerInSight && _currentState != PatrolState)
-            {
-                ChangeState(PatrolState);
-            }
-            else if (playerInSight && !playerInRange && _currentState != ChaseState)
-            {
-                ChangeState(ChaseState);
-            }
-            else if (playerInRange && playerInSight && _currentState != AttackState)
-            {
-                ChangeState(AttackState);
-            }
+        // Normal state transitions
+        if (!playerInSight && !playerInAttack && _currentState != PatrolState)
+        {
+            ChangeState(PatrolState);
+        }
+        else if (playerInSight && !playerInAttack && _currentState != ChaseState && _currentState != RetreatState)
+        {
+            ChangeState(ChaseState);
+        }
+        else if (playerInAttack && playerInSight && _currentState != AttackState)
+        {
+            ChangeState(AttackState);
         }
     }
 
@@ -245,22 +154,4 @@ public class EnemyAI : Character
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, config.tooCloseDistance);
     }
-
-    private void InitializeSkillExecutors()
-    {
-        _skillExecutors = new Dictionary<string, ISkillExecutor>
-        {
-            { "SpinningBoneShot", new SpinningBoneShotSkill(config.projectile, 8, 20f) },
-            { "TwoWayRapidShot", new TwoWayRapidShotSkill(config.projectile, 5, 25f) },
-            { "AOEExplosion", new AOEGroundExplosionSkill(config.projectile, 5f, 30f) },
-            { "SummonMinions", new SummonMinionsSkill(config.projectile, 3, 3f) }
-        };
-    }
-
-    public ISkillExecutor GetSkillExecutor(string skillName)
-    {
-        return _skillExecutors.ContainsKey(skillName) ? _skillExecutors[skillName] : null;
-    }
-
-
 }
