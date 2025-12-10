@@ -2878,6 +2878,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 1072764643}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &1336306903
 GameObject:
   m_ObjectHideFlags: 0
@@ -3115,6 +3116,8 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!1001 &1466428426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3183,6 +3186,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1795f4a2b8aa1084185a5c7cc0b11326, type: 3}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &1477982095
 GameObject:
@@ -4780,10 +4786,14 @@ SceneRoots:
   - {fileID: 1072764643}
   - {fileID: 681732319}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - {fileID: 740312352}
   - {fileID: 1398361017}
   - {fileID: 1204027282}
   - {fileID: 427428441}
+=======
+  - {fileID: 1466428426}
+>>>>>>> Stashed changes
 =======
   - {fileID: 1466428426}
 >>>>>>> Stashed changes
