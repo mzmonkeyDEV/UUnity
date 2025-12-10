@@ -65,8 +65,12 @@ public class EnemyCombatService
 
         if (Vector3.Distance(_transform.position, _ai.Player.position) <= _config.meleeRange)
         {
-            // APPLY DAMAGE HERE ไอทามมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมมม
-            //character.TakeDamage(5);
+            Character target = _ai.Player.GetComponent<Character>();
+
+            if (target != null)
+            {
+                target.TakeDamage((int)_config.meleeDamage);
+            }
         }
     }
 

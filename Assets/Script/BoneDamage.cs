@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoneDamage : MonoBehaviour
 {
-    public int baseDamage = 10;
+    public int ExtraDamage = 0;
     public float lifeTime = 5f;
 
     void Start()
@@ -19,7 +19,7 @@ public class BoneDamage : MonoBehaviour
             Character target = other.GetComponent<Character>();
             if (target != null)
             {
-                target.TakeDamage(baseDamage);
+                target.TakeDamage(ExtraDamage);
             }
 
             Destroy(gameObject);
