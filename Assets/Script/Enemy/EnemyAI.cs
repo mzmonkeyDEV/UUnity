@@ -162,7 +162,7 @@ public class EnemyAI : Character
 
         if (ShouldWarpAfterSkill())
         {
-            animator.SetTrigger("Warp   ");
+            animator.SetTrigger("Warp");
             
             SkillUseCount = 0; // reset counter
         }
