@@ -1779,7 +1779,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.001
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
     - target: {fileID: -43475527947608012, guid: c0e8ec4be6a4d554881a5c8bb6d0c0cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1790,8 +1789,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.834415
       objectReference: {fileID: 0}
-=======
->>>>>>> Stashed changes
     - target: {fileID: 919132149155446097, guid: c0e8ec4be6a4d554881a5c8bb6d0c0cf,
         type: 3}
       propertyPath: m_Name
@@ -2191,7 +2188,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
 --- !u!1001 &1284421845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2260,8 +2256,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1745ff4f408d04c45a9904324ecded31, type: 3}
-=======
->>>>>>> Stashed changes
 --- !u!1 &1428419240
 GameObject:
   m_ObjectHideFlags: 0
@@ -3404,7 +3398,4 @@ SceneRoots:
   - {fileID: 208118325}
   - {fileID: 971980683}
   - {fileID: 1905625818}
-<<<<<<< Updated upstream
   - {fileID: 1284421845}
-=======
->>>>>>> Stashed changes
