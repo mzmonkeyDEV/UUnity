@@ -68,7 +68,7 @@ public class EnemyAI : Character
     {
         PatrolState = new PatrolState(this, _movement, config);
         ChaseState = new ChaseState(this, _movement);
-        AttackState = new AttackState(this, _movement, _combat, _detection);
+        AttackState = new AttackState(this, _movement, _combat, _detection,config);
         RetreatState = new RetreatState(this, _movement, config, transform);
     }
 

@@ -1,16 +1,23 @@
+
+using UnityEngine;
+using System.Collections;
+
 public class AttackState : IEnemyState
 {
     private readonly EnemyAI _ai;
     private readonly EnemyMovementService _movement;
     private readonly EnemyCombatService _combat;
     private readonly EnemyDetectionService _detection;
+    private readonly EnemyConfig _config;
 
-    public AttackState(EnemyAI ai, EnemyMovementService movement, EnemyCombatService combat, EnemyDetectionService detection)
+    public AttackState(EnemyAI ai, EnemyMovementService movement, EnemyCombatService combat, EnemyDetectionService detection, EnemyConfig config)
     {
         _ai = ai;
         _movement = movement;
         _combat = combat;
         _detection = detection;
+        _config = config;
+
     }
 
     public void Enter() { }
@@ -18,7 +25,6 @@ public class AttackState : IEnemyState
     public void Execute()
     {
         if (_ai.Player == null) return;
-
         if (!_detection.HasLineOfSight(_ai.Player))
         {
             _ai.ChangeState(_ai.ChaseState);
@@ -27,8 +33,29 @@ public class AttackState : IEnemyState
 
         _movement.Stop();
         _movement.LookAt(_ai.Player);
-        _combat.Attack();
+
+        if (_config.enemyType == EnemyConfig.EnemyType.Minion)
+        {
+            // MINION USES ONLY MELEE
+            _combat.MeleeAttack(_ai.Player);
+            return;
+        }
+
+        // ---------------- BOSS SKILLS ----------------
+        if (_combat.CanUseSkill())
+        {
+            int randomSkill = Random.Range(0, 4);
+
+            switch (randomSkill)
+            {
+                case 0: _combat.SkillBigBone(); break;
+                case 1: _ai.StartCoroutine(_combat.SkillRapidFire()); break;
+                case 2: _ai.StartCoroutine(_combat.SkillAOE()); break;
+                case 3: _combat.SkillSummon(); break;
+            }
+        }
     }
+
 
     public void Exit() { }
 }
