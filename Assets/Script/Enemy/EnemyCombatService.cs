@@ -26,6 +26,23 @@ public class EnemyCombatService
     public bool CanUseSkill() => Time.time >= _lastSkillTime + _config.skillCooldown;
     public bool CanMelee() => Time.time >= _lastMeleeTime + _config.meleeCooldown;
 
+    private Quaternion FlatRotation()
+    {
+        Vector3 forward = _transform.forward;
+        forward.y = 0;
+        forward.Normalize();
+        return Quaternion.LookRotation(forward);
+    }
+
+    private Quaternion FlatRotationTowards(Transform target)
+    {
+        Vector3 dir = target.position - _transform.position;
+        dir.y = 0; // remove pitch
+        if (dir == Vector3.zero) dir = _transform.forward;
+        return Quaternion.LookRotation(dir);
+    }
+
+
 
     // --------------------------------------------------------------------------
     // MINION — MELEE (ANIMATION EVENT controls the hit)
@@ -66,7 +83,8 @@ public class EnemyCombatService
     // ANIMATION EVENT
     public void Event_SkillBigBone_Release()
     {
-        GameObject obj = Object.Instantiate(_config.bigBoneProjectile, _transform.position, _transform.rotation);
+        Quaternion rot = FlatRotation();
+        GameObject obj = Object.Instantiate(_config.bigBoneProjectile, _transform.position,rot);
         obj.GetComponent<Rigidbody>().AddForce(_transform.forward * _config.bigBoneForce, ForceMode.Impulse);
 
         _ai.RegisterSkillUsed();
@@ -88,22 +106,30 @@ public class EnemyCombatService
 
     public IEnumerator RapidFireCoroutine()
     {
-        if (!CanUseSkill()) yield break;
+
+
+
 
         for (int i = 0; i < _config.rapidFireCount; i++)
         {
-            Event_SkillRapidFire_Shoot();
+            // Boss spins gradually (spin speed based on count)
+            float spinAngle = 360f / _config.rapidFireCount;
+
+            _transform.Rotate(0, spinAngle, 0);
+
+            // Fire projectile in current facing direction
+           Event_SkillRapidFire_Shoot();
+
             yield return new WaitForSeconds(_config.rapidFireRate);
         }
-
-        _lastSkillTime = Time.time;
 
         if (_config.enableBossWarp)
             _ai.RegisterSkillUsed();
     }
     public void Event_SkillRapidFire_Shoot()
     {
-        GameObject obj = Object.Instantiate(_config.rapidFireProjectile, _transform.position, _transform.rotation);
+        
+        GameObject obj = Object.Instantiate(_config.rapidFireProjectile, _transform.position,_transform.rotation );
         obj.GetComponent<Rigidbody>().AddForce(_transform.forward * _config.rapidFireForce, ForceMode.Impulse);
     }
 
