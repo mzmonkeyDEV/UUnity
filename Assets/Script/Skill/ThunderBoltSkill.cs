@@ -17,14 +17,37 @@ public class ThunderBoltSkill : SkillNAJA
         if (projectilePrefab == null)
             return;
 
-        Vector3 spawnPos = player.transform.position + player.transform.forward * 1.2f + Vector3.up * 1f;
-        Quaternion spawnRot = Quaternion.LookRotation(player.transform.forward);
+        Vector3 dir = player.transform.forward;
+
+        Camera cam = Camera.main;
+        if (cam != null)
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 1000f))
+            {
+                Vector3 target = hit.point;
+                target.y = player.transform.position.y;
+
+                Vector3 flatDir = target - player.transform.position;
+                flatDir.y = 0f;
+
+                if (flatDir.sqrMagnitude > 0.01f)
+                    dir = flatDir.normalized;
+            }
+        }
+
+        player.transform.rotation = Quaternion.LookRotation(dir);
+
+        Vector3 spawnPos = player.transform.position + dir * 1.2f + Vector3.up * 1f;
+        Quaternion spawnRot = Quaternion.LookRotation(dir);
 
         GameObject bolt = Object.Instantiate(projectilePrefab, spawnPos, spawnRot);
 
         Rigidbody rb = bolt.GetComponent<Rigidbody>();
         if (rb != null)
-            rb.velocity = player.transform.forward * projectileSpeed;
+            rb.velocity = dir * projectileSpeed;
 
         ThunderProjectile proj = bolt.GetComponent<ThunderProjectile>();
         if (proj != null)

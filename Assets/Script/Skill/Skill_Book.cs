@@ -13,35 +13,34 @@ public class Skill_Book : MonoBehaviour
     List<SkillNAJA> DulationSkills = new List<SkillNAJA>();
 
     CharacterMovement player;
-
-    float lastShiftTime = 0f;
-    public float doubleShiftThreshold = 0.3f;
+    Animator anim;
 
     void Start()
     {
         player = GetComponent<CharacterMovement>();
+        anim = player != null ? player.animator : GetComponentInChildren<Animator>();
 
         skillsSet.Clear();
-        skillsSet.Add(new DashSkill());      // index 0
-        skillsSet.Add(new HealSkill());      // index 1
-        skillsSet.Add(new BerserkSkill());   // index 2
+        skillsSet.Add(new DashSkill());       // index 0
+        skillsSet.Add(new HealSkill());       // index 1
+        skillsSet.Add(new BerserkSkill());    // index 2
 
         ThunderBoltSkill thunder = new ThunderBoltSkill();
         thunder.projectileSpeed = 20f;
         thunder.damageMultiplier = 2.5f;
         thunder.projectilePrefab = thunderProjectilePrefab;
-        skillsSet.Add(thunder);              // index 3
+        skillsSet.Add(thunder);               // index 3
 
         ThunderStrikeSkill strike = new ThunderStrikeSkill();
         strike.range = 15f;
         strike.damageMultiplier = 3f;
         strike.strikeEffectPrefab = thunderStrikeEffectPrefab;
-        skillsSet.Add(strike);               // index 4
+        skillsSet.Add(strike);                // index 4
     }
 
     void Update()
     {
-        DetectDashDoubleShift();
+        DetectDash();
         DetectHeal();
         DetectBerserk();
         DetectThunderBolt();
@@ -59,16 +58,12 @@ public class Skill_Book : MonoBehaviour
         }
     }
 
-    void DetectDashDoubleShift()
+    void DetectDash()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if (Time.time - lastShiftTime <= doubleShiftThreshold)
-            {
-                UseSkill(0);
-            }
-
-            lastShiftTime = Time.time;
+            if (anim != null) anim.SetTrigger("Dash");
+            UseSkill(0);
         }
     }
 
@@ -76,6 +71,7 @@ public class Skill_Book : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            if (anim != null) anim.SetTrigger("Heal");
             UseSkill(1);
         }
     }
@@ -84,6 +80,7 @@ public class Skill_Book : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            if (anim != null) anim.SetTrigger("Berserk");
             UseSkill(2);
         }
     }
@@ -92,6 +89,7 @@ public class Skill_Book : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            if (anim != null) anim.SetTrigger("ThunderBolt");
             UseSkill(3);
         }
     }
@@ -100,6 +98,7 @@ public class Skill_Book : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
+            if (anim != null) anim.SetTrigger("ThunderStrike");
             UseSkill(4);
         }
     }
