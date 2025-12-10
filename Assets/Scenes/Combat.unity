@@ -922,7 +922,10 @@ MonoBehaviour:
   - {x: 0, y: 1, z: 0}
   - {x: 0, y: 1, z: 0}
   - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 1, z: 0}
   thunderProjectilePrefab: {fileID: 3647402321914128111, guid: 976956053013dd443be9ded41889d0e2,
+    type: 3}
+  thunderStrikeEffectPrefab: {fileID: 5258695374749734573, guid: d46475ebcdee5a5469624067e22b02d4,
     type: 3}
   doubleShiftThreshold: 0.3
 --- !u!1 &580133631

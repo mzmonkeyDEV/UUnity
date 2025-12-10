@@ -7,8 +7,8 @@ public class Skill_Book : MonoBehaviour
     public GameObject[] skillEffects;
     public Vector3[] effectOffsets;
 
-    // Prefab กระสุนสายฟ้าสำหรับ Thunder Bolt
     public GameObject thunderProjectilePrefab;
+    public GameObject thunderStrikeEffectPrefab;
 
     List<SkillNAJA> DulationSkills = new List<SkillNAJA>();
 
@@ -22,25 +22,31 @@ public class Skill_Book : MonoBehaviour
         player = GetComponent<CharacterMovement>();
 
         skillsSet.Clear();
-        skillsSet.Add(new DashSkill());        // index 0
-        skillsSet.Add(new HealSkill());        // index 1
-        skillsSet.Add(new BerserkSkill());     // index 2
+        skillsSet.Add(new DashSkill());      // index 0
+        skillsSet.Add(new HealSkill());      // index 1
+        skillsSet.Add(new BerserkSkill());   // index 2
 
-        // --- สร้าง ThunderBoltSkill แล้วส่ง prefab กระสุนเข้าไป ---
         ThunderBoltSkill thunder = new ThunderBoltSkill();
+        thunder.projectileSpeed = 20f;
+        thunder.damageMultiplier = 2.5f;
         thunder.projectilePrefab = thunderProjectilePrefab;
-        skillsSet.Add(thunder);                // index 3
-        // ------------------------------------------------------------
+        skillsSet.Add(thunder);              // index 3
+
+        ThunderStrikeSkill strike = new ThunderStrikeSkill();
+        strike.range = 15f;
+        strike.damageMultiplier = 3f;
+        strike.strikeEffectPrefab = thunderStrikeEffectPrefab;
+        skillsSet.Add(strike);               // index 4
     }
 
     void Update()
     {
-        DetectDashDoubleShift(); // Dash (index 0)
-        DetectHeal();            // Heal (index 1)
-        DetectBerserk();         // Berserk (index 2)
-        DetectThunderBolt();     // Thunder Bolt (index 3)
+        DetectDashDoubleShift();
+        DetectHeal();
+        DetectBerserk();
+        DetectThunderBolt();
+        DetectThunderStrike();
 
-        // อัปเดตสกิลที่มี duration
         for (int i = DulationSkills.Count - 1; i >= 0; i--)
         {
             SkillNAJA s = DulationSkills[i];
@@ -59,7 +65,7 @@ public class Skill_Book : MonoBehaviour
         {
             if (Time.time - lastShiftTime <= doubleShiftThreshold)
             {
-                UseSkill(0); // Dash
+                UseSkill(0);
             }
 
             lastShiftTime = Time.time;
@@ -70,7 +76,7 @@ public class Skill_Book : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            UseSkill(1); // Heal
+            UseSkill(1);
         }
     }
 
@@ -78,7 +84,7 @@ public class Skill_Book : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            UseSkill(2); // Berserk
+            UseSkill(2);
         }
     }
 
@@ -86,7 +92,15 @@ public class Skill_Book : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            UseSkill(3); // Thunder Bolt
+            UseSkill(3);
+        }
+    }
+
+    void DetectThunderStrike()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            UseSkill(4);
         }
     }
 
@@ -103,7 +117,6 @@ public class Skill_Book : MonoBehaviour
         skill.Activate(player);
         skill.TimeStampSkill(Time.time);
 
-        // สร้าง effect ประกอบ (เช่น แสงตอนกดสกิล)
         if (skillEffects != null &&
             skillIndex < skillEffects.Length &&
             skillEffects[skillIndex] != null)
@@ -122,7 +135,6 @@ public class Skill_Book : MonoBehaviour
             );
 
             fx.transform.SetParent(player.transform);
-
             Destroy(fx, 3f);
         }
 
