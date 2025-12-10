@@ -47,8 +47,9 @@ MonoBehaviour:
   meleeCooldown: 1
   enableBossWarp: 1
   bossWalkPoints:
-  - {fileID: 3787651314285944690, guid: 5bcd4b07b5ae61c418b7ee4c0e33a8ce, type: 3}
-  - {fileID: 2616462439032030563, guid: 5ecbacfca7b996a4f8a26d843880875c, type: 3}
-  - {fileID: 6178104649250714552, guid: a80f27e1e282fae428e5379d356d5f03, type: 3}
-  - {fileID: 18035570977250262, guid: 0f7b04e07a8237741aa45794bc3daea7, type: 3}
+  - {fileID: 2099639473825642158, guid: c2c50406cfb01564f95a9d3b26104e55, type: 3}
+  - {fileID: 7952774316423341318, guid: 020054daed964db468a1aa5b8943c176, type: 3}
+  - {fileID: 4029304499258326613, guid: 41b1215204765f24da4613bb275c2449, type: 3}
+  - {fileID: 6112594781700235794, guid: 806978cff0578a24688c8339ce61790a, type: 3}
+  - {fileID: 3102535252523490679, guid: c82e9c1e52fe902429adfe4bd5362f86, type: 3}
   bossWalkPointTolerance: 1

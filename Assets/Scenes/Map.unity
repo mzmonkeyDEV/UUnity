@@ -186,7 +186,8 @@ PrefabInstance:
       value: Minion
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6409029776085155929, guid: fb8bd1eae4f107840ad4eaf0863d6151, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb8bd1eae4f107840ad4eaf0863d6151, type: 3}
@@ -520,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15bae2fb24c29a942aa8fef1ba0c9952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 256798888}
+  target: {fileID: 596492805}
   hpRect: {fileID: 972436010}
 --- !u!114 &154155893
 MonoBehaviour:
@@ -1007,7 +1008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f4e5a78bec4bd4aa1893b4481133b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 256798886}
+  player: {fileID: 596492800}
   gameOverUI: {fileID: 1398361013}
 --- !u!4 &427428441
 Transform:
@@ -1388,6 +1389,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8499116263930872373, guid: 4030a87ff09d5304f81c7c31382e5c85, type: 3}
+--- !u!1 &596492800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4183514434431725068, guid: 14848b5ac3aa7be48857d4165678d185,
+    type: 3}
+  m_PrefabInstance: {fileID: 1590629700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &596492805 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3667369942662138290, guid: 14848b5ac3aa7be48857d4165678d185,
+    type: 3}
+  m_PrefabInstance: {fileID: 1590629700}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596492800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde779f31c8ede84f8ed37289dfb3d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &639781784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,7 +1794,8 @@ PrefabInstance:
       value: Minion (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6409029776085155929, guid: fb8bd1eae4f107840ad4eaf0863d6151, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb8bd1eae4f107840ad4eaf0863d6151, type: 3}
