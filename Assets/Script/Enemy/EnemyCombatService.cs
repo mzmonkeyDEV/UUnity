@@ -113,10 +113,7 @@ public class EnemyCombatService
         for (int i = 0; i < _config.rapidFireCount; i++)
         {
             // Boss spins gradually (spin speed based on count)
-            float spinAngle = 360f / _config.rapidFireCount;
-
-            _transform.Rotate(0, spinAngle, 0);
-
+          
             // Fire projectile in current facing direction
            Event_SkillRapidFire_Shoot();
 
@@ -128,8 +125,8 @@ public class EnemyCombatService
     }
     public void Event_SkillRapidFire_Shoot()
     {
-        
-        GameObject obj = Object.Instantiate(_config.rapidFireProjectile, _transform.position,_transform.rotation );
+        Quaternion rot = FlatRotation();
+        GameObject obj = Object.Instantiate(_config.rapidFireProjectile, _transform.position, rot);
         obj.GetComponent<Rigidbody>().AddForce(_transform.forward * _config.rapidFireForce, ForceMode.Impulse);
     }
 

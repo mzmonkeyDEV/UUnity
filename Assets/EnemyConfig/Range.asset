@@ -27,15 +27,15 @@ MonoBehaviour:
   tooCloseDistance: 0.25
   canRetreatFromAttack: 1
   enemyType: 1
-  bigBoneProjectile: {fileID: 6710506378748573941, guid: 510a1c9d14bf80244bca9364d5354278,
+  bigBoneProjectile: {fileID: 8543903484792450914, guid: fd6cda725c485f64f9fbff54bbd0b247,
     type: 3}
-  rapidFireProjectile: {fileID: 6710506378748573941, guid: 510a1c9d14bf80244bca9364d5354278,
+  rapidFireProjectile: {fileID: 5707811178258620947, guid: 4677e1e01173230428306dedb8c0f416,
     type: 3}
-  aoeBonePrefab: {fileID: 6710506378748573941, guid: 510a1c9d14bf80244bca9364d5354278,
+  aoeBonePrefab: {fileID: 817417197301576443, guid: 69414f61c04797b4a868d8ff0462a180,
     type: 3}
-  minionPrefab: {fileID: 8858051749441068820, guid: 4c67ed6c086451b4db54ac4d24b626bb,
+  minionPrefab: {fileID: 5329686556670521630, guid: fb8bd1eae4f107840ad4eaf0863d6151,
     type: 3}
-  bigBoneForce: 25
+  bigBoneForce: 6.3
   rapidFireForce: 18
   rapidFireRate: 0.1
   rapidFireCount: 12
