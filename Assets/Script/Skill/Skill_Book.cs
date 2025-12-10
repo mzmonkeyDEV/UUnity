@@ -5,13 +5,15 @@ public class Skill_Book : MonoBehaviour
 {
     public List<SkillNAJA> skillsSet = new List<SkillNAJA>();
     public GameObject[] skillEffects;
+
+    public Vector3[] effectOffsets;
+
     List<SkillNAJA> DulationSkills = new List<SkillNAJA>();
 
     CharacterMovement player;
 
     void Start()
     {
-        // เดิมเป็น GetComponent<Player>()
         player = GetComponent<CharacterMovement>();
 
         skillsSet.Clear();
@@ -30,7 +32,6 @@ public class Skill_Book : MonoBehaviour
             UseSkill(1); // Heal
         }
 
-        // อัปเดต duration skills
         for (int i = DulationSkills.Count - 1; i >= 0; i--)
         {
             SkillNAJA s = DulationSkills[i];
@@ -55,6 +56,28 @@ public class Skill_Book : MonoBehaviour
 
         skill.Activate(player);
         skill.TimeStampSkill(Time.time);
+
+        if (skillEffects != null &&
+            skillIndex < skillEffects.Length &&
+            skillEffects[skillIndex] != null)
+        {
+            Vector3 spawnPos = player.transform.position;
+
+            if (effectOffsets != null && skillIndex < effectOffsets.Length)
+            {
+                spawnPos += effectOffsets[skillIndex];
+            }
+
+            GameObject fx = Instantiate(
+                skillEffects[skillIndex],
+                spawnPos,
+                player.transform.rotation
+            );
+
+            fx.transform.SetParent(player.transform);
+
+            Destroy(fx, 3f);
+        }
 
         if (skill.timer > 0 && !DulationSkills.Contains(skill))
         {

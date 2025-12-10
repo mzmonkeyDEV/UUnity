@@ -900,6 +900,24 @@ MonoBehaviour:
   animator: {fileID: 502085779}
   attackCooldown: 0.5
   attackArea: {fileID: 1893804093}
+--- !u!114 &502085781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502085775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b86aa89f094b1749a91c02d84f75823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillEffects:
+  - {fileID: 7314526620251459061, guid: ccf28ea29cf499744ac31bab90073aba, type: 3}
+  - {fileID: 339158821923109191, guid: 108ca465382c11742bd2c91fe4fdb13f, type: 3}
+  effectOffsets:
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 1, z: 0}
 --- !u!1 &580133631
 GameObject:
   m_ObjectHideFlags: 0
@@ -2813,6 +2831,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 502085780}
+    - targetCorrespondingSourceObject: {fileID: 1835885862194036, guid: c647a6e9ba715004ebbf4dc6d7bd1e7a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 502085781}
   m_SourcePrefab: {fileID: 100100000, guid: c647a6e9ba715004ebbf4dc6d7bd1e7a, type: 3}
 --- !u!1001 &1558821037
 PrefabInstance:
