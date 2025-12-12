@@ -41,7 +41,7 @@ public class AttackState : IEnemyState
             return;
         }
 
-        // ---------------- BOSS SKILLS ----------------
+        //BOSS SKILLS
         if (_combat.CanUseSkill())
         {
             int randomSkill = Random.Range(0, 4);

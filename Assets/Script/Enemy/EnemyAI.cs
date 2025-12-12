@@ -88,7 +88,7 @@ public class EnemyAI : Character
         bool playerInSight = _detection.IsPlayerInSightRange(player);
         bool playerInAttack = _detection.IsPlayerInAttackRange(player);
 
-        // Check for retreat condition first
+      
         if (playerInSight && ShouldRetreat())
         {
             ChangeState(RetreatState);
@@ -96,7 +96,7 @@ public class EnemyAI : Character
             return;
         }
 
-        // Normal state transitions
+        //  state transitions
         if (!playerInSight && !playerInAttack && _currentState != PatrolState)
         {
             ChangeState(PatrolState);
@@ -185,7 +185,7 @@ public class EnemyAI : Character
 
         Transform point = config.bossWalkPoints[_bossWarpIndex];
 
-        agent.Warp(point.position);       // instant teleport
+        agent.Warp(point.position);       
         transform.rotation = point.rotation;
 
         Debug.Log("Boss warped to point " + _bossWarpIndex);

@@ -23,7 +23,7 @@ public class EnemyCombatService
         _lastSkillTime = -_config.skillCooldown;
     }
 
-    // ------------------ TIMERS ------------------
+    // TIMERS
     public bool CanUseSkill() => Time.time >= _lastSkillTime + _config.skillCooldown;
     public bool CanMelee() => Time.time >= _lastMeleeTime + _config.meleeCooldown;
 
@@ -45,9 +45,9 @@ public class EnemyCombatService
 
 
 
-    // --------------------------------------------------------------------------
+    
     // MINION — MELEE (ANIMATION EVENT controls the hit)
-    // --------------------------------------------------------------------------
+    
     public void MeleeAttack()
     {
         if (!CanMelee()) return;
@@ -75,9 +75,9 @@ public class EnemyCombatService
     }
 
 
-    // --------------------------------------------------------------------------
+    
     // BOSS — SKILL 1 : BIG BONE
-    // --------------------------------------------------------------------------
+    
     public void SkillBigBone_Start()
     {
         if (!CanUseSkill()) return;
@@ -97,9 +97,9 @@ public class EnemyCombatService
     }
 
 
-    // --------------------------------------------------------------------------
+    
     // BOSS — SKILL 2 : RAPID FIRE
-    // --------------------------------------------------------------------------
+    
     public void SkillRapidFire_Start()
     {
         if (!CanUseSkill()) return;
@@ -137,9 +137,9 @@ public class EnemyCombatService
     }
 
 
-    // --------------------------------------------------------------------------
+    
     // BOSS — SKILL 3 : AOE
-    // --------------------------------------------------------------------------
+    
     public void SkillAOE_Start()
     {
         if (!CanUseSkill()) return;
@@ -155,9 +155,9 @@ public class EnemyCombatService
     }
 
 
-    // --------------------------------------------------------------------------
+    
     // BOSS — SKILL 4 : SUMMON
-    // --------------------------------------------------------------------------
+    
     public void SkillSummon_Start()
     {
         if (!CanUseSkill()) return;
